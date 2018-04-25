@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+#NavbarGymBunny {
+  background-color: pink;
+}
+
+#emoji-black-heart {
+  position: absolute;
+  right: 0;
+  top: 70%; 
+}
