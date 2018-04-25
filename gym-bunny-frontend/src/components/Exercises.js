@@ -32,7 +32,7 @@ class Exercises extends React.Component {
     return (
       <div key={index}>
         <Card body outline color="secondary">
-          <CardTitle><h1>{name}</h1></CardTitle>
+          <CardTitle><h3>{name}</h3></CardTitle>
             <CardText>{sets} sets of {reps} reps</CardText>
             <CardText>Starting Weight: {weight} </CardText>
             <CheckOff checked={this.state.completed[index]} onClick={ e => {this.handleOnChecked(index)}}/>
