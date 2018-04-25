@@ -23,6 +23,7 @@ class CompletedWorkout extends React.Component {
     }).catch(err => console.log(err))
   }
 
+
   createWorkoutCard(name, key) {
     return (
       <Card key={key} body outline color="secondary">

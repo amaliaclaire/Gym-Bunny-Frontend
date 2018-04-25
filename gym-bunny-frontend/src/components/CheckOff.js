@@ -4,7 +4,7 @@ import {emojify} from 'react-emojione';
 
 
 function CheckOff(props) {
-  const content = props.checked ? ':rabbit:' : 'Finished With Set';
+  const content = props.checked ? emojify(':rabbit:') : 'Finished With Set';
   return (
     <span onClick={props.onClick}>
       {content}
