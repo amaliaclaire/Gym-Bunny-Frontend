@@ -55,6 +55,7 @@ class Exercises extends React.Component {
     })
     return(
       <div>
+        <Button color="primary">Add Exercises</Button>{' '}
         <h1>{workoutName}</h1>
         {exercisesInformation}
       </div>

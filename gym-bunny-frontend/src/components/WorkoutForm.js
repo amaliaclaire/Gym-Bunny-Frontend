@@ -1,32 +1,38 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import axios from 'axios';
+
 
 class WorkoutForm extends React.Component {
   constructor(props) {
     super(props);
-    state = {
+    this.state = {
       workout_name: ''
     }
+  }
 
-    handleChange = event => {
-      this.setState({ workout_name: event.target.value });
+  handleChange = event => {
+    this.setState({ workout_name: event.target.value });
+  }
+
+  handleSubmit = event => {
+    event.preventDefault();
+
+    const workoutSingleForm = {
+      workout_name: this.state.workout_name
     }
 
-    handleSubmit = event => {
-      event.preventDefault();
+    const request = {
+      name: this.state.workout_name,
+      user_id: 2
+    };
 
-      const workoutSingleForm = {
-        workout_name: this.state.workout_name
-      }
-
-    }
     // proptypes blah blah
-
-    axios.post('http://', {workout_name})
-    .then(res => {
-      console.log(res);
-      console.log(res.data);
-    })
+    axios.post('http://localhost:3001/workouts', request)
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
   }
 
   render () {
