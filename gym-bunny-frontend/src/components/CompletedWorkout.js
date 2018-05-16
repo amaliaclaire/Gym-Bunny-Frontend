@@ -1,8 +1,7 @@
 import React from 'react';
-import { Card, CardTitle, CardText } from 'reactstrap';
-import {emojify} from 'react-emojione';
+import { Card, CardTitle } from 'reactstrap';
 import axios from 'axios';
-import { Button, Fade } from 'reactstrap';
+import { Button } from 'reactstrap';
 //   <CardText>4 sets of 10 reps </CardText>
 //  <div id="emoji-black-heart">
 //    {emojify(':black_heart:')}

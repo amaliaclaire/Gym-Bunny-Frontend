@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Card, Button, CardTitle, CardText } from 'reactstrap';
 import axios from 'axios';
 import CheckOff from './CheckOff'
@@ -17,7 +17,7 @@ class Exercises extends React.Component {
       const completed = res.data.map(e => {
         return false
       })
-      this.setState({exercises})
+      this.setState({exercises, completed})
     }).catch(err => console.log(err))
   }
 
@@ -32,13 +32,29 @@ class Exercises extends React.Component {
     return (
       <div key={index}>
         <Card body outline color="secondary">
-          <CardTitle><h3>{name}</h3></CardTitle>
-            <CardText>{sets} sets of {reps} reps</CardText>
-            <CardText>Starting Weight: {weight} </CardText>
-            <CheckOff checked={this.state.completed[index]} onClick={ e => {this.handleOnChecked(index)}}/>
+          <CardTitle>{name}</CardTitle>
+          <CardText>{sets} sets of {reps} reps</CardText>
+          <CardText>Starting Weight: {weight} </CardText>
+          <CheckOff
+            checked={this.state.completed[index]}
+            onClick={ e => {this.handleOnChecked(index)}}
+          />
        </Card>
       </div>
     )
+  }
+
+  exercisesCompleted() {
+    let count = 0
+
+    this.state.completed.forEach(el => {
+      if(el) {
+        count++
+      }
+    })
+    return (
+      count
+    );
   }
 
   render () {
@@ -48,7 +64,7 @@ class Exercises extends React.Component {
       workoutName = this.state.exercises[0].workout_name
     }
 
-    const exercisesInformation =  this.state.exercises.map((exercise, index) => {
+    const exerciseCards =  this.state.exercises.map((exercise, index) => {
       console.log('exercise:', exercise);
         return this.renderExerciseCard(exercise.name,exercise.reps, exercise.sets, exercise.weight, index)
 
@@ -57,7 +73,8 @@ class Exercises extends React.Component {
       <div>
         <Button color="primary">Add Exercises</Button>{' '}
         <h1>{workoutName}</h1>
-        {exercisesInformation}
+        {exerciseCards}
+        {this.exercisesCompleted()} / {this.state.exercises.length}
       </div>
     );
   }

@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 // import React from 'react';
-import ReactDOM from 'react-dom';
 import NavbarGymBunny from './components/NavbarGymBunny'
 import ImageCard from './components/LandingPage'
 import WorkoutForm from './components/WorkoutForm'
 import ExerciseForm from './components/ExerciseForm'
 import CompletedWorkout from './components/CompletedWorkout'
 import Exercises from './components/Exercises'
-import { BrowserRouter, Route, Link, Switch } from 'react-router-dom'
+import { Route, Link, Switch } from 'react-router-dom'
 
 
 const Pages = {

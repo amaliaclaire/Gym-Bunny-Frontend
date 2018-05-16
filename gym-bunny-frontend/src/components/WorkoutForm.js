@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import React from 'react';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import axios from 'axios';
 
 
@@ -18,9 +18,7 @@ class WorkoutForm extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    const workoutSingleForm = {
-      workout_name: this.state.workout_name
-    }
+
 
     const request = {
       name: this.state.workout_name,
