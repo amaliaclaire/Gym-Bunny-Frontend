@@ -11,7 +11,7 @@ import Login from './components/Login'
 import LoginScreen from './components/LoginScreen'
 import Register from './components/Register'
 import { Route, Link, Switch } from 'react-router-dom'
-
+import getAuthInstance from './components/AuthStore'
 
 const Pages = {
   LandingPage: 'landing page',

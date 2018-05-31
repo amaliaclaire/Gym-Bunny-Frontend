@@ -2,14 +2,18 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import { Card, CardTitle, CardText, CardImg, CardImgOverlay, Button} from 'reactstrap';
 import { Link } from 'react-router-dom'
+import getAuthInstance from './AuthStore'
 
 
 class ImageCard extends React.Component {
 
-
   static propTypes = {
     onClickPlan: PropTypes.func.isRequired
   };
+
+  componentDidMount() {
+    console.log('logged in?: ', getAuthInstance().isLoggedIn());
+  }
 
   render() {
     return (

@@ -71,9 +71,10 @@ class Exercises extends React.Component {
     })
     return(
       <div>
-        <Button color="primary">Add Exercises</Button>{' '}
+        <Button color="primary" href="/exerciseform">Add Exercises</Button> {' '}
         <h1>{workoutName}</h1>
         {exerciseCards}
+        <h5>Collect The Bunnies</h5>
         {this.exercisesCompleted()} / {this.state.exercises.length}
       </div>
     );
