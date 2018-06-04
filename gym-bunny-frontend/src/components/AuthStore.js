@@ -7,6 +7,7 @@ class AuthStore {
 
   isLoggedIn() {
     return this._token !== null;
+    // if i have a login and I have a token
   }
 
   get token() {
