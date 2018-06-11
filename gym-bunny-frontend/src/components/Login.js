@@ -28,7 +28,7 @@ handleClick = (event) => {
   axios.post(apiBaseUrl + 'login', payload)
   .then( (response) => {
     const token = response.headers.authorization.match(/Bearer: (.*)/)[1];
-    
+
     const authStore = getAuthInstance();
     authStore.setToken(token);
     this.setState({ loggedIn: true });

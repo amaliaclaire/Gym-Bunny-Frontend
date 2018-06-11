@@ -2,10 +2,7 @@ import React from 'react';
 import { Card, CardTitle } from 'reactstrap';
 import axios from 'axios';
 import { Button } from 'reactstrap';
-//   <CardText>4 sets of 10 reps </CardText>
-//  <div id="emoji-black-heart">
-//    {emojify(':black_heart:')}
-//  </div>
+
 
 class CompletedWorkout extends React.Component {
   constructor(props) {
@@ -17,18 +14,19 @@ class CompletedWorkout extends React.Component {
     axios.get('http://localhost:3001/workouts')
     .then(res => {
       const workouts = res.data
-      // console.log(workouts);
+      console.log(workouts);
       this.setState({workouts})
     }).catch(err => console.log(err))
   }
 
 
+
   createWorkoutCard(name, key) {
     return (
       <Card key={key} body outline color="secondary">
+      <Button color="link">Edit Workout</Button>
         <CardTitle>{name}</CardTitle>
         <Button outline color="secondary">Enter Workout</Button>{' '}
-
       </Card>
     )
   }

@@ -11,6 +11,7 @@ import Login from './components/Login'
 import LoginScreen from './components/LoginScreen'
 import Register from './components/Register'
 import MotivationQuotes from './components/MotivationQuotes'
+import UpdateWorkoutForm from './components/UpdateWorkoutForm'
 import { Route, Link, Switch } from 'react-router-dom'
 import getAuthInstance from './components/AuthStore'
 
@@ -23,7 +24,8 @@ const Pages = {
   Login: 'login',
   LoginScreen: 'LoginScreen',
   Register: 'register',
-  MotivationQuotes: 'MotivationQuotes'
+  MotivationQuotes: 'MotivationQuotes',
+  UpdateWorkoutForm: 'UpdateWorkoutForm'
 
 
 }
@@ -76,7 +78,8 @@ class App extends Component {
         <Route path='/login' component={Login} />
         <Route path='/loginScreen' component={LoginScreen} />
         <Route path='/register' component={Register} />
-        <Route path='/MotivationQuotes' component={MotivationQuotes} />
+        <Route path='/MotivationQuotes'            component={MotivationQuotes} />
+        <Route path='/UpdateWorkoutForm' component={UpdateWorkoutForm} /> 
         </Switch>
       </div>
     );

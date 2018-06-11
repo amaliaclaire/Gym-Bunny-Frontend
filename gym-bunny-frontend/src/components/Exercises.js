@@ -21,7 +21,6 @@ class Exercises extends React.Component {
     }).catch(err => console.log(err))
   }
 
-
   handleOnChecked(index) {
     const updatedState = Array.from(this.state.completed);
     updatedState[index] = !this.state.completed[index]
@@ -65,7 +64,6 @@ class Exercises extends React.Component {
     }
 
     const exerciseCards =  this.state.exercises.map((exercise, index) => {
-      console.log('exercise:', exercise);
         return this.renderExerciseCard(exercise.name,exercise.reps, exercise.sets, exercise.weight, index)
 
     })
