@@ -11,20 +11,19 @@ class BasicWorkoutForm extends React.Component {
     }
   }
 
-  static propTypes = {
+  static PropTypes = {
     workoutName: PropTypes.string,
     verb: PropTypes.string.isRequired,
     onAction: PropTypes.func.isRequired
   }
 
   handleChange = event => {
-    this.setState({
-      workoutName: event.target.value,
-    })
+    this.setState({workoutName: event.target.value})
   }
+
   handleSubmit = event => {
-    event.preventDefault();
-    this.props.onAction(this.state.workoutName);
+    event.preventDefault()
+    this.props.onAction(this.state.workoutName)
   }
 
   render () {

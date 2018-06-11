@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import axios from 'axios';
 import BasicWorkoutForm from './BasicWorkoutForm'
-let workoutId; 
+let workoutId;
 
 
 class UpdateWorkoutForm extends React.Component {
