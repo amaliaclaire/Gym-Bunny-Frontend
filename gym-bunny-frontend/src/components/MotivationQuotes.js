@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import { Button } from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, CardLink,
+  CardTitle, CardSubtitle } from 'reactstrap';
 
 
 function getRandomInt(max) {
@@ -18,7 +20,7 @@ class MotivationQuotes extends React.Component {
     let index;
     do {
       index = getRandomInt(this.state.quotes.length)
-    } while (index === this.state.index && this.state.quotes.length > 1)  
+    } while (index === this.state.index && this.state.quotes.length > 1)
     this.setState({index})}
 
   componentDidMount() {
@@ -38,10 +40,11 @@ class MotivationQuotes extends React.Component {
 
     return (
       <div>
-        <h5>motivational quotes</h5>
-        {quote}
-        <Button outline color="secondary" onClick={this.handleClick}>Next Quote</Button>{' '}
-
+        <Card>
+          <CardTitle>Motivate yo self</CardTitle>
+          <CardSubtitle>{quote}</CardSubtitle>
+          <Button outline color="secondary" onClick={this.handleClick}>Next Quote</Button>{' '}
+        </Card>
       </div>
     )
   }

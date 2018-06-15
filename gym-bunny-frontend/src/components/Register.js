@@ -14,14 +14,12 @@ class Register extends React.Component {
     }
   }
 
+
   displayUserName(createdUser) {
     this.setState({createdUser})
-
     setTimeout(function () {
       this.props.history.push("/login")
     }.bind(this), 2000)
-
-    // add something to history
   }
 
   handleClick (event) {
@@ -64,5 +62,7 @@ class Register extends React.Component {
 const style = {
   margin: 15,
 };
+
+
 
 export default Register;
