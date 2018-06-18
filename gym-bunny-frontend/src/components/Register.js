@@ -5,6 +5,35 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import axios from 'axios';
 
+// code from demo
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import { withStyles, createMuiTheme } from '@material-ui/core/styles';
+import purple from '@material-ui/core/colors/purple';
+import green from '@material-ui/core/colors/green';
+
+
+
+const styles = theme => ({
+  cssLabel: {
+    '&$cssFocused': {
+      color: purple[500],
+    },
+  },
+  cssFocused: {},
+  cssUnderline: {
+    '&:after': {
+      borderBottomColor: purple[500],
+    },
+  }
+});
+
+const theme = createMuiTheme({
+  palette: {
+    primary: green,
+  },
+});
+
 class Register extends React.Component {
   constructor (props) {
     super(props)
@@ -40,13 +69,15 @@ class Register extends React.Component {
       throw Error
     })
   }
+
+
   render () {
     return (
       <div>
-        <MuiThemeProvider>
+        <MuiThemeProvider theme={theme}>
           <div>
-            <AppBar title="Register" />
-            <TextField hintText="Enter your username" floatingLabelText="username" onChange = {(event, newValue) => this.setState({username: newValue})} />
+            <AppBar style={{background: '#CE3175'}} title="Register" />
+            <TextField label="MuiThemeProvider" id="mui-theme-provider-input" hintText="Enter your username" floatingLabelText="username" onChange = {(event, newValue) => this.setState({username: newValue})} />
             <br/>
             <TextField hintText="Enter your password" floatingLabelText="password" onChange = {(event, newValue) => this.setState({password: newValue})} />
             <br/>
@@ -59,10 +90,11 @@ class Register extends React.Component {
   }
 }
 
+
 const style = {
   margin: 15,
 };
 
 
 
-export default Register;
+export default withStyles(styles)(Register);

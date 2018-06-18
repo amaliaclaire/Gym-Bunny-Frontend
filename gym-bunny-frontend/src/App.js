@@ -14,6 +14,7 @@ import MotivationQuotes from './components/MotivationQuotes'
 import UpdateWorkoutForm from './components/UpdateWorkoutForm'
 import { Route, Link, Switch } from 'react-router-dom'
 import getAuthInstance from './components/AuthStore'
+import withStyles from './components/withStyles'
 
 const Pages = {
   LandingPage: 'landing page',
@@ -25,7 +26,8 @@ const Pages = {
   LoginScreen: 'LoginScreen',
   Register: 'register',
   MotivationQuotes: 'MotivationQuotes',
-  UpdateWorkoutForm: 'UpdateWorkoutForm'
+  UpdateWorkoutForm: 'UpdateWorkoutForm',
+  withStyles: 'withStyles'
 
 
 }
@@ -34,27 +36,6 @@ class App extends Component {
     appState: Pages.LandingPage
   };
 
-  // onPlanWorkout = () => {
-  //   this.setState({appState: Pages.WorkoutForm})
-  // };
-  //
-  // renderPage() {
-  //   if(this.state.appState === Pages.LandingPage) {
-  //     return (
-  //       <ImageCard
-  //         onClickPlan={this.onPlanWorkout}
-  //         />
-  //     )
-  //   } else if (this.state.appState === Pages.WorkoutForm) {
-  //     return (
-  //       <WorkoutForm/>
-  //     )
-  //   } else if (this.state.appState === Pages.Workouts) {
-  //     return (
-  //       <CompletedWorkout/>
-  //     )
-  //   }
-  // }
 
   render() {
     //return <div>hello</div>
@@ -79,7 +60,8 @@ class App extends Component {
         <Route path='/loginScreen' component={LoginScreen} />
         <Route path='/register' component={Register} />
         <Route path='/MotivationQuotes'            component={MotivationQuotes} />
-        <Route path='/UpdateWorkoutForm' component={UpdateWorkoutForm} /> 
+        <Route path='/UpdateWorkoutForm' component={UpdateWorkoutForm} />
+        <Route path='/withStyles' component={withStyles} /> 
         </Switch>
       </div>
     );
