@@ -9,6 +9,21 @@ import { withStyles, createMuiTheme } from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
 
+// Format for register page
+<div>
+  <MuiThemeProvider theme={theme}>
+    <div>
+      <AppBar style={{background: '#CE3175'}} title="Register" />
+      <TextField label="MuiThemeProvider" id="mui-theme-provider-input" hintText="Enter your username" floatingLabelText="username" onChange = {(event, newValue) => this.setState({username: newValue})} />
+      <br/>
+      <TextField hintText="Enter your password" floatingLabelText="password" onChange = {(event, newValue) => this.setState({password: newValue})} />
+      <br/>
+      <RaisedButton label="create" primary={true} style={style} onClick={(event) => this.handleClick(event)} />
+    </div>
+  </MuiThemeProvider>
+  <h3>{this.state.createdUser ? `${this.state.createdUser}  ` : '' }</h3>
+</div>
+
 const styles = theme => ({
   cssLabel: {
     '&$cssFocused': {
@@ -102,7 +117,7 @@ export default Register withStyles(styles)(CustomizedInputs);
 
 
 
-// The code that WORKS 
+// The code that WORKS
 
 // import React from 'react';
 // import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
