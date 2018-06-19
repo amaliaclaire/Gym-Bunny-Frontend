@@ -77,24 +77,21 @@ const styles = theme => ({
 
 class Register extends React.Component {
   constructor (props) {
-    super(props)
+    super(props);
     this.state = {
       username: '',
       password: ''
     }
   }
 
-
-
   displayUserName(createdUser) {
     this.setState({createdUser})
-    setTimeout(function () {
+    setTimeout(() => {
       this.props.history.push("/login")
-    }.bind(this), 2000)
+    }, 2000)
   }
 
-
-  handleClick (event) {
+  handleClick() {
     let apiBaseUrl = "http://localhost:3001/"
     let body = {
       username: this.state.username,
@@ -103,77 +100,76 @@ class Register extends React.Component {
     // key value pairs of username and password in body. We call it body
 
     axios.post(apiBaseUrl + 'signUp', body)
-
-    .then( response => {
-      let createdUserName = response.data.result
-      this.displayUserName(createdUserName)
-    })
-    .catch(error => {
-      throw Error
-    })
+      .then(response => {
+        const createdUserName = response.data.result
+        this.displayUserName(createdUserName)
+      })
+      .catch(error => {
+        throw Error
+      })
   }
-
 
   render () {
     const {classes} = this.props;
-      return (
-        <div>
-          <FormControl className={classes.margin}>
-            <InputLabel id="register-createUser"
-              FormLabelClasses={{
-                root: classes.cssLabel,
-                focused: classes.cssFocused,
-              }}
-              htmlFor="custom-css-input"
-            >
-              Create Username
-            </InputLabel>
-            <Input
-              classes={{
-                underline: classes.cssUnderline,
-              }}
-              id="custom-css-input" onChange = {(event, newValue) => this.setState({username: newValue})}
-            />
-          </FormControl>
+    return (
+      <div>
+        <FormControl className={classes.margin}>
+          <InputLabel id="register-createUser"
+            FormLabelClasses={{
+              root: classes.cssLabel,
+              focused: classes.cssFocused,
+            }}
+            htmlFor="custom-css-input"
+          >
+            Create Username
+          </InputLabel>
+          <Input
+            classes={{
+              underline: classes.cssUnderline,
+            }}
+            id="custom-css-input" onChange = {(event, newValue) => this.setState({username: newValue})}
+          />
+        </FormControl>
 
+        <FormControl className={classes.margin}>
+          <InputLabel id="register-createPassword"
+            FormLabelClasses={{
+              root: classes.cssLabel,
+              focused: classes.cssFocused,
+            }}
+            htmlFor="custom-css-input"
+          >
+            Create Password
+          </InputLabel>
+          <Input
+            classes={{
+              underline: classes.cssUnderline,
+            }}
+            id="custom-css-input" onChange = {(event, newValue) => this.setState({password: newValue})}
+          />
+        </FormControl>
 
-
-          <FormControl className={classes.margin}>
-            <InputLabel id="register-createPassword"
-              FormLabelClasses={{
-                root: classes.cssLabel,
-                focused: classes.cssFocused,
-              }}
-              htmlFor="custom-css-input"
-            >
-              Create Password
-            </InputLabel>
-            <Input
-              classes={{
-                underline: classes.cssUnderline,
-              }}
-              id="custom-css-input" onChange = {(event, newValue) => this.setState({password: newValue})}
-            />
-          </FormControl>
-
-          <Button variant="contained" className={classes.button} primary={true} style={style} onClick={(event) => this.handleClick(event)} >
-            Submit
-          </Button>
-          <h3>{this.state.createdUser ? `${this.state.createdUser}  ` : '' }</h3>
-        </div>
-      );
-    }
+        <Button
+          variant="contained"
+          className={classes.button}
+          primary={true}
+          style={style}
+          onClick={(event) => this.handleClick(event)}
+        >
+          Submit
+        </Button>
+        <h3>{this.state.createdUser ? `${this.state.createdUser}  ` : '' }</h3>
+      </div>
+    );
   }
 }
 
-RegisterPage.propTypes = {
+Register.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
 const style = {
   margin: 15,
 };
-
-
 
 export default withStyles(styles)(Register);
