@@ -1,36 +1,77 @@
 import React from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
 import axios from 'axios';
 
 // code from demo
+import PropTypes from 'prop-types';
+import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import { withStyles, createMuiTheme } from '@material-ui/core/styles';
-import purple from '@material-ui/core/colors/purple';
-import green from '@material-ui/core/colors/green';
-
+import TextField from '@material-ui/core/TextField';
+import FormControl from '@material-ui/core/FormControl';
+import pink from '@material-ui/core/colors/pink'
+import Button from '@material-ui/core/Button';
 
 
 const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  margin: {
+    margin: theme.spacing.unit,
+  },
   cssLabel: {
     '&$cssFocused': {
-      color: purple[500],
+      color: pink[400],
     },
   },
   cssFocused: {},
   cssUnderline: {
     '&:after': {
-      borderBottomColor: purple[500],
+      borderBottomColor: pink[400],
     },
-  }
-});
-
-const theme = createMuiTheme({
-  palette: {
-    primary: green,
+  },
+  bootstrapRoot: {
+    padding: 0,
+    'label + &': {
+      marginTop: theme.spacing.unit * 3,
+    },
+  },
+  bootstrapInput: {
+    borderRadius: 4,
+    backgroundColor: theme.palette.common.white,
+    border: '1px solid #ced4da',
+    fontSize: 16,
+    padding: '10px 12px',
+    width: 'calc(100% - 24px)',
+    transition: theme.transitions.create(['border-color', 'box-shadow']),
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+    '&:focus': {
+      borderColor: '#80bdff',
+      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+    },
+  },
+  bootstrapFormLabel: {
+    fontSize: 18,
+  },
+  button: {
+    margin: theme.spacing.unit,
+  },
+  input: {
+    display: 'none',
   },
 });
 
@@ -44,12 +85,14 @@ class Register extends React.Component {
   }
 
 
+
   displayUserName(createdUser) {
     this.setState({createdUser})
     setTimeout(function () {
       this.props.history.push("/login")
     }.bind(this), 2000)
   }
+
 
   handleClick (event) {
     let apiBaseUrl = "http://localhost:3001/"
@@ -72,24 +115,60 @@ class Register extends React.Component {
 
 
   render () {
-    return (
-      <div>
-        <MuiThemeProvider theme={theme}>
-          <div>
-            <AppBar style={{background: '#CE3175'}} title="Register" />
-            <TextField label="MuiThemeProvider" id="mui-theme-provider-input" hintText="Enter your username" floatingLabelText="username" onChange = {(event, newValue) => this.setState({username: newValue})} />
-            <br/>
-            <TextField hintText="Enter your password" floatingLabelText="password" onChange = {(event, newValue) => this.setState({password: newValue})} />
-            <br/>
-            <RaisedButton label="create" primary={true} style={style} onClick={(event) => this.handleClick(event)} />
-          </div>
-        </MuiThemeProvider>
-        <h3>{this.state.createdUser ? `${this.state.createdUser}  ` : '' }</h3>
-      </div>
-    );
+    const {classes} = this.props;
+      return (
+        <div>
+          <FormControl className={classes.margin}>
+            <InputLabel id="register-createUser"
+              FormLabelClasses={{
+                root: classes.cssLabel,
+                focused: classes.cssFocused,
+              }}
+              htmlFor="custom-css-input"
+            >
+              Create Username
+            </InputLabel>
+            <Input
+              classes={{
+                underline: classes.cssUnderline,
+              }}
+              id="custom-css-input" onChange = {(event, newValue) => this.setState({username: newValue})}
+            />
+          </FormControl>
+
+
+
+          <FormControl className={classes.margin}>
+            <InputLabel id="register-createPassword"
+              FormLabelClasses={{
+                root: classes.cssLabel,
+                focused: classes.cssFocused,
+              }}
+              htmlFor="custom-css-input"
+            >
+              Create Password
+            </InputLabel>
+            <Input
+              classes={{
+                underline: classes.cssUnderline,
+              }}
+              id="custom-css-input" onChange = {(event, newValue) => this.setState({password: newValue})}
+            />
+          </FormControl>
+
+          <Button variant="contained" className={classes.button} primary={true} style={style} onClick={(event) => this.handleClick(event)} >
+            Submit
+          </Button>
+          <h3>{this.state.createdUser ? `${this.state.createdUser}  ` : '' }</h3>
+        </div>
+      );
+    }
   }
 }
 
+RegisterPage.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 const style = {
   margin: 15,
