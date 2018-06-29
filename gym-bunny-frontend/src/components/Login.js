@@ -122,8 +122,35 @@ handleClick = (event) => {
             focused: classes.cssFocused,
           }}
           htmlFor="custom-css-input"
-          id="custom-css-input" >  Hello</InputLabel> 
+          id="custom-css-input" >username
+          </InputLabel>
+          <Input classes = {{
+            underline: classes.cssUnderline,
+          }}
+            value={this.state.username}
+            onChange = {(event, newValue) => this.setState({username: newValue})}
+          />
         </FormControl>
+
+        <FormControl className={classes.margin}>
+          <InputLabel id="login-loginPassword" FormLabelClasses={{
+            root: classes.cssLabel,
+            focused: classes.cssFocused,
+          }}
+            htmlFor="custom-css-input"
+            id="custom-css-input"
+          >
+            Password
+           </InputLabel>
+           <Input classes={{
+             underline: classes.cssUnderline,
+           }}
+            value={this.state.password}
+            onChange = {(event, newValue) => this.setState({password: newValue})}
+           />
+        </FormControl>
+        
+
       </div>
     );
   }
