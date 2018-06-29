@@ -149,7 +149,15 @@ handleClick = (event) => {
             onChange = {(event, newValue) => this.setState({password: newValue})}
            />
         </FormControl>
-        
+
+        <Button
+          variant="contained"
+          className={classes.button}
+          style={style}
+          onClick={(event) => this.handleClick(event)}
+        >
+          Login
+        </Button>
 
       </div>
     );
