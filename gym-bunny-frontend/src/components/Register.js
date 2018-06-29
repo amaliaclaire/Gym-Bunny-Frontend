@@ -98,7 +98,7 @@ class Register extends React.Component {
       username: this.state.username,
       password: this.state.password
     }
-    console.log('body', body);
+    // console.log('body', body);
     // key value pairs of username and password in body. We call it body
 
     axios.post(apiBaseUrl + 'signUp', body)
@@ -122,7 +122,8 @@ class Register extends React.Component {
               focused: classes.cssFocused,
             }}
             htmlFor="custom-css-input"
-            id="custom-css-input" onChange = {(event, newValue) => this.setState({username: newValue})}
+            id="custom-css-input"
+
           >
             Create Username
           </InputLabel>
@@ -130,7 +131,8 @@ class Register extends React.Component {
             classes={{
               underline: classes.cssUnderline,
             }}
-
+            value={this.state.username}
+            onChange = {(event) => this.setState({username: event.target.value})}
           />
         </FormControl>
 
@@ -141,7 +143,7 @@ class Register extends React.Component {
               focused: classes.cssFocused,
             }}
             htmlFor="custom-css-input"
-            id="custom-css-input" onChange = {(event, newValue) => this.setState({password: newValue})}
+            id="custom-css-input"
           >
             Create Password
           </InputLabel>
@@ -149,6 +151,8 @@ class Register extends React.Component {
             classes={{
               underline: classes.cssUnderline,
             }}
+            value={this.state.password}
+            onChange = {(event) => this.setState({password: event.target.value})}
 
           />
         </FormControl>
