@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardTitle, CardText } from 'reactstrap';
 import axios from 'axios';
 import CheckOff from './CheckOff'
-import {Button} from 'reactstrap'
+import { Button } from 'reactstrap'
 
 let workoutId = 1
 
@@ -15,6 +15,7 @@ class Exercises extends React.Component {
     axios.get('http://localhost:3001/workouts/' + workoutId)
     .then(res => {
       const exercises = res.data
+      console.log('exercises', exercises);
       const completed = res.data.map(e => {
         return false
       })
@@ -26,6 +27,17 @@ class Exercises extends React.Component {
     const updatedState = Array.from(this.state.completed);
     updatedState[index] = !this.state.completed[index]
     this.setState({ completed: updatedState });
+  }
+
+  handleChange = event => {
+    this.setState({id: event.target.value})
+  }
+
+  handleDelete = id => {
+    axios.delete(`http:localhost:3001/workoutsWithExercises/${id}`)
+    .then(res => {
+      console.log(res);
+    })
   }
 
   renderExerciseCard(name, reps, sets, weight, index) {
@@ -73,6 +85,7 @@ class Exercises extends React.Component {
         <Button color="primary" href="/exerciseform">Add Exercises</Button> {' '}
         <h1>{workoutName}</h1>
         {exerciseCards}
+        <button onClick={() => this.handleDelete()}>Delete</button>
         <h5>Collect The Bunnies</h5>
         {this.exercisesCompleted()} / {this.state.exercises.length}
       </div>
