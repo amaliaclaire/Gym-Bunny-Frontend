@@ -11,28 +11,39 @@ class CompletedWorkout extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:3001/workouts')
+    axios.get(`http://localhost:3001/workouts/`)
+
     .then(res => {
       const workouts = res.data
-      console.log(workouts);
+      console.log(workouts); // object
       this.setState({workouts})
     }).catch(err => console.log(err))
   }
 
+  handleChange = event => {
+    this.setState({id: event.target.value});
+  }
+
+  handleDelete = id => {
+    axios.delete(`http://localhost:3001/workouts/${id}`)
+    .then(res => {
+      console.log(res);
+    })
+  }
 
 
-  createWorkoutCard(name, key) {
+  createWorkoutCard(workout) {
     return (
-      <Card key={key} body outline color="secondary">
-      <Button color="link">Edit Workout</Button>
-        <CardTitle>{name}</CardTitle>
+      <Card  key={workout.id} body outline color="secondary">
+        <CardTitle>{workout.name}</CardTitle>
         <Button outline color="secondary">Enter Workout</Button>{' '}
+        <button onClick={() => this.handleDelete(workout.id)}> Delete</button>
       </Card>
     )
   }
   render() {
     let elements = this.state.workouts.map((workout, index) => {
-      return this.createWorkoutCard(workout.name, index)
+      return this.createWorkoutCard(workout)
     })
     return (
       <div>

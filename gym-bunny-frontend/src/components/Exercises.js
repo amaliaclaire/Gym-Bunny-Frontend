@@ -1,7 +1,8 @@
 import React from 'react';
-import { Card, Button, CardTitle, CardText } from 'reactstrap';
+import { Card, CardTitle, CardText } from 'reactstrap';
 import axios from 'axios';
 import CheckOff from './CheckOff'
+import {Button} from 'reactstrap'
 
 let workoutId = 1
 
