@@ -15,14 +15,12 @@ class Exercises extends React.Component {
     axios.get('http://localhost:3001/workouts/' + workoutId)
     .then(res => {
       const exercises = res.data
-      console.log('exercises', exercises);
       const completed = res.data.map(e => {
         return false
       })
       this.setState({exercises, completed})
     }).catch(err => console.log(err))
   }
-
   handleOnChecked(index) {
     const updatedState = Array.from(this.state.completed);
     updatedState[index] = !this.state.completed[index]
@@ -34,7 +32,7 @@ class Exercises extends React.Component {
   }
 
   handleDelete = id => {
-    axios.delete(`http:localhost:3001/workoutsWithExercises/${id}`)
+    axios.delete(`http://localhost:3001/workoutsWithExercises/${id}`)
     .then(res => {
       console.log(res);
     })
@@ -51,6 +49,7 @@ class Exercises extends React.Component {
             checked={this.state.completed[index]}
             onClick={ e => {this.handleOnChecked(index)}}
           />
+          <Button color="secondary" onClick={() => this.handleDelete(index)}>Delete</Button> {' '}
        </Card>
       </div>
     )
@@ -85,7 +84,6 @@ class Exercises extends React.Component {
         <Button color="primary" href="/exerciseform">Add Exercises</Button> {' '}
         <h1>{workoutName}</h1>
         {exerciseCards}
-        <button onClick={() => this.handleDelete()}>Delete</button>
         <h5>Collect The Bunnies</h5>
         {this.exercisesCompleted()} / {this.state.exercises.length}
       </div>
