@@ -21,6 +21,10 @@ class Exercises extends React.Component {
       this.setState({exercises, completed})
     }).catch(err => console.log(err))
   }
+
+  fetch () {
+
+  }
   handleOnChecked(index) {
     const updatedState = Array.from(this.state.completed);
     updatedState[index] = !this.state.completed[index]
@@ -35,6 +39,15 @@ class Exercises extends React.Component {
     axios.delete(`http://localhost:3001/workoutsWithExercises/${id}`)
     .then(res => {
       console.log(res);
+      // this.state.exercises && res data that we deleted then splice then new array this.setState new array
+      const copyOfNewExercises = this.state.exercises
+      const exercisesId = copyOfNewExercises.find(exercise => {
+        return exercise.id === id
+      })
+      console.log(copyOfNewExercises.length);
+      copyOfNewExercises.splice(exercisesId, 1)
+      console.log(copyOfNewExercises.length);
+      this.setState({exercises: copyOfNewExercises})
     })
   }
 
@@ -76,7 +89,8 @@ class Exercises extends React.Component {
     }
 
     const exerciseCards =  this.state.exercises.map((exercise, index) => {
-        return this.renderExerciseCard(exercise.name,exercise.reps, exercise.sets, exercise.weight, index)
+      console.log('exercise', exercise);
+        return this.renderExerciseCard(exercise.name,exercise.reps, exercise.sets, exercise.weight, exercise.id)
 
     })
     return(
