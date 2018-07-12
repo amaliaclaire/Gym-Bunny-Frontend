@@ -38,15 +38,19 @@ class Exercises extends React.Component {
   handleDelete = id => {
     axios.delete(`http://localhost:3001/workoutsWithExercises/${id}`)
     .then(res => {
-      console.log(res);
+      // console.log(id);
       // this.state.exercises && res data that we deleted then splice then new array this.setState new array
       const copyOfNewExercises = this.state.exercises
-      const exercisesId = copyOfNewExercises.find(exercise => {
+      const foundExercises = copyOfNewExercises.find(exercise => {
         return exercise.id === id
       })
-      console.log(copyOfNewExercises.length);
-      copyOfNewExercises.splice(exercisesId, 1)
-      console.log(copyOfNewExercises.length);
+      // console.log(foundExercises);
+      const newExerciseIndex = copyOfNewExercises.indexOf(copyOfNewExercises)
+      copyOfNewExercises.splice(newExerciseIndex, 1)
+      console.log(copyOfNewExercises);
+      console.log(this.state.exercises);
+
+      // console.log(copyOfNewExercises.length);
       this.setState({exercises: copyOfNewExercises})
     })
   }
