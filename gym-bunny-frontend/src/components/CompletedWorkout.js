@@ -27,7 +27,18 @@ class CompletedWorkout extends React.Component {
   handleDelete = id => {
     axios.delete(`http://localhost:3001/workouts/${id}`)
     .then(res => {
+      // 1. this.state.workouts
+      // 2. make sure that the res data is deleted
+      // 3. then SPLICE new array and make sure it's gone as fuck
+      // 4. thissetState new array bitchhhhh
       console.log(res);
+      const copyOfNewWorkouts = this.state.workouts
+      const foundExercises = copyOfNewWorkouts.find(workout => {
+        return workout.id === id
+      })
+      const newWorkoutIndex = copyOfNewWorkouts.indexOf(copyOfNewWorkouts)
+      copyOfNewWorkouts.splice(newWorkoutIndex, 1)
+      this.setState({workouts: copyOfNewWorkouts})
     })
   }
 

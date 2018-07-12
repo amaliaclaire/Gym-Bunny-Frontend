@@ -44,13 +44,8 @@ class Exercises extends React.Component {
       const foundExercises = copyOfNewExercises.find(exercise => {
         return exercise.id === id
       })
-      // console.log(foundExercises);
       const newExerciseIndex = copyOfNewExercises.indexOf(copyOfNewExercises)
       copyOfNewExercises.splice(newExerciseIndex, 1)
-      console.log(copyOfNewExercises);
-      console.log(this.state.exercises);
-
-      // console.log(copyOfNewExercises.length);
       this.setState({exercises: copyOfNewExercises})
     })
   }
